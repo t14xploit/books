@@ -20,7 +20,7 @@ export default function BookCard({book}:BookCardProps) {
         <p>Published: {formattedDate}</p>
         <p>ISBN: {book.isbn}</p>
 
-        <Link href={`/book/${book.id}`} className="block text-center  bg-green-700 text-xl mb-6 font-bold text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 dark:bg-green-800 dark:hover:bg-green-700 dark:focus:ring-green-400">Details</Link>
+        <Link href={`/books/${book.id}`} className="block text-center  bg-green-700 text-xl mb-6 font-bold text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 dark:bg-green-800 dark:hover:bg-green-700 dark:focus:ring-green-400">Details</Link>
     </div>
   )
 }
