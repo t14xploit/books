@@ -1,34 +1,38 @@
 "use client";
+import { createBook } from "./actions";
+import { useActionState } from "react";
 
 export default function CreateBookForm() {
+
+const [state, formAction, isPending] = useActionState(createBook, {
+    message:"",
+});
+    
     return (
       <div className="p-6 my-6 bg-gray-900 bg-opacity-20 backdrop-blur-md rounded-lg shadow-lg max-w-xl w-full border border-gray-400">
-        <form className="flex flex-col gap-4 w-full">
-          {/* Title */}
+        <form action={formAction} className="flex flex-col gap-4 w-full">
+          
+          {state.message &&(<p>{state.message}</p>)}
           <div>
             <label htmlFor="title" className="block text-lg font-semibold text-white">Title</label>
             <input
               type="text"
               id="title"
               name="title"
-              required
               className="p-2 mt-1 w-full bg-gray-950 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
           </div>
   
-          {/* Author */}
           <div>
             <label htmlFor="author" className="block text-lg font-semibold text-white">Author</label>
             <input
               type="text"
               id="author"
               name="author"
-              required
               className="p-2 mt-1 bg-gray-950 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
           </div>
   
-          {/* Description */}
           <div>
             <label htmlFor="description" className="block text-lg font-semibold text-white">Description</label>
             <textarea
@@ -38,7 +42,6 @@ export default function CreateBookForm() {
             />
           </div>
   
-          {/* Image URL */}
           <div>
             <label htmlFor="image" className="block text-lg font-semibold text-white">Image URL</label>
             <input
@@ -60,24 +63,20 @@ export default function CreateBookForm() {
               type="date"
               id="published"
               name="published"
-              required
               className="p-2 mt-1 w-full bg-gray-950 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
           </div>
   
-          {/* ISBN */}
           <div>
             <label htmlFor="isbn" className="block text-lg font-semibold text-white">ISBN</label>
             <input
               type="text"
               id="isbn"
               name="isbn"
-              required
               className="p-2 mt-1 w-full bg-gray-950 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
           </div>
   
-          {/* Cover Type */}
           <div>
             <label htmlFor="coverType" className="block text-lg font-semibold text-white">Cover Type</label>
             <input
@@ -88,13 +87,12 @@ export default function CreateBookForm() {
             />
           </div>
   
-          {/* Submit Button */}
           <div>
             <button
-              type="submit"
+              type="submit" disabled={isPending}
               className=" text-2xl font-bold p-3 mt-4 bg-green-700 text-white rounded-lg w-full hover:bg-green-600 transition duration-200"
             >
-              Submit
+              {isPending?"Submitting": "Submit"}
             </button>
           </div>
         </form>
