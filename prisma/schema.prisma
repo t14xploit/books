@@ -17,8 +17,11 @@ model Book {
   id          String   @id @default(cuid())
   title       String
   author      String
+  description String?
+  image String?
   published   DateTime
   isbn        String   @unique
+  coverType String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
