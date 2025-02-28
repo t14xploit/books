@@ -34,7 +34,7 @@ const formattedDate = book.published.toLocaleDateString();
       </div>
     )}
     <div className="flex-1">
-      <div className="flex items-start justify-between mb-4"> {/* Changed 'items-center' to 'items-start' */}
+      <div className="flex items-start justify-between mb-2"> {/* Changed 'items-center' to 'items-start' */}
         <h2 className="text-4xl font-bold text-white">{book.title}</h2>
         <div className="flex space-x-4">
           <button className="text-4xl text-yellow-500 hover:text-yellow-400 p-2 rounded-full transition duration-200">
@@ -48,7 +48,7 @@ const formattedDate = book.published.toLocaleDateString();
 
       {/* Author, Date, ISBN */}
       <h3 className="text-xl font-bold text-white">{book.author}</h3>
-      <p className="text-sm text-gray-300">Published: {formattedDate}</p>
+      <p className="mt-4 text-sm text-gray-300">Published: {formattedDate}</p>
       <p className="text-sm mb-4 text-gray-300">ISBN: {book.isbn}</p>
       <hr />
       <br />
