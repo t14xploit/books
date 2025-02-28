@@ -1,5 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
+import Image from "next/image";
+
 
 type Params = Promise<{
   bookId: string;
@@ -24,25 +26,40 @@ export default async function BookDetailsPage(props: Props) {
   }
 const formattedDate = book.published.toLocaleDateString();
   return (<>
-<div className="space-y-4 my-10 max-w-4xl mx-auto bg-gray-800 bg-opacity-60 backdrop-blur-md p-6 rounded-lg shadow-lg">
-  <div className="flex items-center justify-between">
-    <h2 className="text-4xl font-bold text-white">{book.title}</h2>
-    <div className="flex space-x-4">
-      <button className=" text-4xl text-yellow-500 hover:text-yellow-400 p-2 rounded-full transition duration-200">
-        ✎
-      </button>
-      <button className=" text-4xl text-red-500 hover:text-red-400 p-2 rounded-full transition duration-200">
-        🗑
-      </button>
+<div className="space-y-4 my-10 max-w-6xl mx-auto bg-gray-800 bg-opacity-60 backdrop-blur-md p-6 rounded-lg shadow-lg">
+  <div className="flex items-start space-x-8"> {/* Changed 'items-center' to 'items-start' */}
+    {book.image && (
+      <div className="flex-shrink-0">
+        <Image src={book.image} alt={book.title} width={300} height={400} className="rounded-lg shadow-md" />
+      </div>
+    )}
+    <div className="flex-1">
+      <div className="flex items-start justify-between mb-4"> {/* Changed 'items-center' to 'items-start' */}
+        <h2 className="text-4xl font-bold text-white">{book.title}</h2>
+        <div className="flex space-x-4">
+          <button className="text-4xl text-yellow-500 hover:text-yellow-400 p-2 rounded-full transition duration-200">
+            ✎
+          </button>
+          <button className="text-4xl text-red-500 hover:text-red-400 p-2 rounded-full transition duration-200">
+            🗑
+          </button>
+        </div>
+      </div>
+
+      {/* Author, Date, ISBN */}
+      <h3 className="text-xl font-bold text-white">{book.author}</h3>
+      <p className="text-sm text-gray-300">Published: {formattedDate}</p>
+      <p className="text-sm mb-4 text-gray-300">ISBN: {book.isbn}</p>
+      <hr />
+      <br />
+<p className="text-gray-300">📙:{book.coverType && <span> {book.coverType}</span>}</p>
+<br />
+<p>Overview:</p>
+      {book.description && <p className="text-sm text-gray-300 mt-4">{book.description}</p>}
     </div>
   </div>
-  
-  <h2 className="text-lg font-bold text-white">{book.author}</h2>
-  <p className="text-sm text-gray-300">Published: {formattedDate}</p>
-  <p className="text-sm text-gray-300">ISBN: {book.isbn}</p>
-  <p className="text-sm text-gray-300 mt-4">
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui aut nulla blanditiis corrupti quaerat ab commodi earum, eaque natus iusto? Perferendis animi possimus aliquam quam laborum nisi ipsam sit ducimus.
-  </p>
 </div>
+
+
 
   </>)}
