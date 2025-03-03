@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import DeleteBookButton from "@/components/DeleteBookButton";
+import UpdateBookButton from "@/components/UpdateBookButton";
 
 
 type Params = Promise<{
@@ -38,9 +39,8 @@ const formattedDate = book.published.toLocaleDateString();
       <div className="flex items-start justify-between mb-2"> {/* Changed 'items-center' to 'items-start' */}
         <h2 className="text-4xl font-bold text-white">{book.title}</h2>
         <div className="flex space-x-4">
-          <button className="text-4xl text-yellow-500 hover:text-yellow-400 p-2 rounded-full transition duration-200">
-            ✎
-          </button>
+         <UpdateBookButton bookId={bookId} updatedData={{
+              }}/>
           <DeleteBookButton bookId={book.id}/>
         </div>
       </div>
