@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import DeleteBookButton from "@/components/DeleteBookButton";
 
 
 type Params = Promise<{
@@ -40,9 +41,7 @@ const formattedDate = book.published.toLocaleDateString();
           <button className="text-4xl text-yellow-500 hover:text-yellow-400 p-2 rounded-full transition duration-200">
             ✎
           </button>
-          <button className="text-4xl text-red-500 hover:text-red-400 p-2 rounded-full transition duration-200">
-            🗑
-          </button>
+          <DeleteBookButton bookId={book.id}/>
         </div>
       </div>
 
