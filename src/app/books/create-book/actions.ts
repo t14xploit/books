@@ -28,7 +28,7 @@ const result = createSchema.safeParse(obj);
 if(!result.success){
     console.log(result.error.flatten());
     return{
-        message: "Failed to create a book!",
+        message: "Attempt to create a book failed!",
         error: result.error.message,
     };
 }
@@ -36,25 +36,27 @@ if(!result.success){
 
 
     try {
-        await prisma.book.create({
+        const book =  await prisma.book.create({
             data:{
                 ...result.data,
                 image: result.data.image||null,
                 description: result.data.description || null,
                 coverType: result.data.coverType||null,
-            }
+            },
         });
-        // redirect(`/books/${book.id}`);
 
-  
+        console.log("Created book with ID:", book.id);  // Debugging: log the created book's ID
+return {message: "Succesfully created",
+    bookId: book.id,
+}
 
-} catch (error) {
+    } catch (error) {
     console.log(error);
     return {
-        message: "Failed to create a book!",
+        message: "Failed to create a product!",
     };
 }
 
-redirect("/");
 
 }
+
