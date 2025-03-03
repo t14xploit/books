@@ -1,5 +1,6 @@
 "use server";
 import {prisma} from "@/lib/prisma";
+import { redirect } from "next/navigation";
 
 
 export async function deleteBook(bookId: string){
@@ -8,4 +9,5 @@ export async function deleteBook(bookId: string){
             id:bookId
         }
     });
+    redirect("/");
 }
