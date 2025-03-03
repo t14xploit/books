@@ -1,7 +1,8 @@
 "use server";
-import { redirect } from "next/navigation";
+import { redirect, RedirectType } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
+
 
 
 const createSchema = z.object({
@@ -45,10 +46,13 @@ if(!result.success){
             },
         });
 
-        console.log("Created book with ID:", book.id);  // Debugging: log the created book's ID
-return {message: "Succesfully created",
-    bookId: book.id,
-}
+       
+        // console.log("Created book with ID:", book.id);  // Debugging: log the created book's ID
+//         return {message: "Succesfully created",
+//     bookId: book.id,
+    
+// }
+redirect(`/books/${book.id}`, RedirectType.replace);
 
     } catch (error) {
     console.log(error);
