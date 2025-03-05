@@ -9,5 +9,5 @@ export async function deleteBook(bookId: string){
             id:bookId
         }
     });
-    redirect("/");
+    redirect("/books");
 }

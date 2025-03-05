@@ -28,7 +28,7 @@ export default async function BookDetailsPage(props: Props) {
   }
 const formattedDate = book.published.toLocaleDateString();
   return (<>
-<div className="space-y-4 my-10 max-w-6xl mx-auto bg-gray-800 bg-opacity-60 backdrop-blur-md p-6 rounded-lg shadow-lg">
+<div className="space-y-4 p-10 my-10 max-w-4xl mx-auto bg-black border   rounded-lg shadow-lg">
   <div className="flex items-start space-x-8"> {/* Changed 'items-center' to 'items-start' */}
     {book.image && (
       <div className="flex-shrink-0">

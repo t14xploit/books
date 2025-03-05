@@ -18,7 +18,7 @@ const [state, formAction, isPending] = useActionState(editBook.bind(null, book.i
 
 
     return (
-      <div className="p-6 my-6 bg-gray-900 bg-opacity-20 backdrop-blur-md rounded-lg shadow-lg max-w-xl w-full border border-gray-400">
+      <div className="m-auto p-6 my-6 bg-gray-900 bg-opacity-20 backdrop-blur-md rounded-lg shadow-lg max-w-xl w-full border border-gray-400">
         <form action={formAction} className="flex flex-col gap-4 w-full">
           
           {state.message &&(<p>{state.message}</p>)}

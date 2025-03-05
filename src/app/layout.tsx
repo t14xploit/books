@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,37 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+    <div className="min-h-screen bg-black text-white">
+      {/* Header */}
+      <header className="bg-black border-b-2 shadow-lg p-4">
+        <div className="flex items-center justify-between max-w-screen-xl mx-auto">
+          <div className="flex items-center space-x-4">
+            {/* Logo */}
+            <Link href="/" className="text-3xl font-bold text-green-400">
+              T14X
+            </Link>
+            <Link href="/" className="text-lg hover:text-green-400 transition">Home</Link>
+            <Link href="/books" className="text-lg hover:text-green-400 transition">Books</Link>
+            <Link href="/books/create-book" className="text-lg hover:text-green-400 transition">Create</Link>
+          </div>
+        </div>
+      </header>
+<main className="py-8 h-[75%]  "> 
+      {children}
+
+</main>
+      {/* Footer */}
+      <footer className="bg-black border-t-2 text-center p-4">
+        <blockquote className="text-gray-300 italic mb-4">
+          "A room without books is like a body without a soul." — Marcus Tullius Cicero
+        </blockquote>
+        <p className="text-sm text-gray-400">
+          &copy; T14X {new Date().getFullYear()}. All rights reserved.
+        </p>
+      </footer>
+    </div>
+  
+       
       </body>
     </html>
   );
