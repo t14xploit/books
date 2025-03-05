@@ -18,8 +18,8 @@ const [state, formAction, isPending] = useActionState(editBook.bind(null, book.i
 
 
     return (
-      <div className="m-auto p-6 my-6 bg-gray-900 bg-opacity-20 backdrop-blur-md rounded-lg shadow-lg max-w-xl w-full border border-gray-400">
-        <form action={formAction} className="flex flex-col gap-4 w-full">
+<div className="m-auto p-6 my-6 bg-black rounded-lg shadow-lg max-w-xl w-full border border-gray-400">
+<form action={formAction} className="text-left flex flex-col gap-4 w-full">
           
           {state.message &&(<p>{state.message}</p>)}
           <div>
@@ -50,7 +50,7 @@ const [state, formAction, isPending] = useActionState(editBook.bind(null, book.i
               id="description"
               name="description"
               defaultValue={book.description??""}
-              className="p-2 mt-1 w-full border bg-gray-950 border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+              className="p-2 mt-1 w-full h-40 border bg-gray-950 border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
           </div>
   

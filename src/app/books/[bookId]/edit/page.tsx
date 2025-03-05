@@ -26,7 +26,7 @@ export default async function EditBookPage(props:Props) {
 
 
     return (
-    <div className="max-w-4xl mx-auto m-12 p-8 space-y-4 rounded-lg bg-black text-center">
+    <div className="max-w-4xl mx-auto  p-8 space-y-4 rounded-lg bg-black text-center">
         <h1 className="text-3xl font-bold text-green-400">
 Edit Book            </h1>
 <EditBookForm book={book}/>
