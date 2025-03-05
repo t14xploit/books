@@ -1,12 +1,19 @@
 "use client";
-import { createBook } from "./actions";
+import BookCard from "@/components/BookCard";
+import { editBook } from "./actions";
 import { useActionState } from "react";
+import { Book } from "@prisma/client";
+import { date } from "zod";
 
+type Props ={
+  book: Book;
+};
 
-export default function CreateBookForm() {
+export default function EditBookForm({book}:Props) {
 
-const [state, formAction, isPending] = useActionState(createBook, {
+const [state, formAction, isPending] = useActionState(editBook.bind(null, book.id), {
     message:"",
+    error:""
 });
 
 
@@ -21,7 +28,7 @@ const [state, formAction, isPending] = useActionState(createBook, {
               type="text"
               id="title"
               name="title"
-              
+              defaultValue={book.title}
               className="p-2 mt-1 w-full bg-gray-950 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
           </div>
@@ -32,6 +39,7 @@ const [state, formAction, isPending] = useActionState(createBook, {
               type="text"
               id="author"
               name="author"
+              defaultValue={book.author}
               className="p-2 mt-1 bg-gray-950 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
           </div>
@@ -41,6 +49,7 @@ const [state, formAction, isPending] = useActionState(createBook, {
             <textarea
               id="description"
               name="description"
+              defaultValue={book.description??""}
               className="p-2 mt-1 w-full border bg-gray-950 border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
           </div>
@@ -51,6 +60,7 @@ const [state, formAction, isPending] = useActionState(createBook, {
               type="text"
               id="image"
               name="image"
+              defaultValue={book.image??""}
               className="p-2 mt-1 w-full bg-gray-950 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
           </div>
@@ -66,6 +76,8 @@ const [state, formAction, isPending] = useActionState(createBook, {
               type="date"
               id="published"
               name="published"
+              // !!!!!! fix:: toISOString().split("T")[0] : ""
+              defaultValue={book.published?book.published.toISOString().split("T")[0] : ""}
               className="p-2 mt-1 w-full bg-gray-950 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
           </div>
@@ -76,6 +88,7 @@ const [state, formAction, isPending] = useActionState(createBook, {
               type="text"
               id="isbn"
               name="isbn"
+              defaultValue={book.isbn}
               className="p-2 mt-1 w-full bg-gray-950 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
           </div>
@@ -86,6 +99,7 @@ const [state, formAction, isPending] = useActionState(createBook, {
               type="text"
               id="coverType"
               name="coverType"
+              defaultValue={book.coverType??""}
               className="p-2 mt-1 w-full border bg-gray-950 border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
           </div>

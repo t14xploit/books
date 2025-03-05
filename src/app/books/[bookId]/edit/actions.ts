@@ -5,7 +5,7 @@ import { z } from "zod";
 
 
 
-const createSchema = z.object({
+const editSchema = z.object({
     title: z.string().nonempty(),
     author: z.string().nonempty(),
     description: z.string().max(1000).optional(),
@@ -20,24 +20,30 @@ const createSchema = z.object({
   
 
 
-export async function createBook(prevState: unknown, formData: FormData){
+export async function editBook(
+    bookId:string,
+    prevState: unknown, 
+    formData: FormData
+){
      const obj = Object.fromEntries(formData.entries());
     // console.log(obj);
     // const title = formData.get("title") as string;
     // const author = formData.get("author") as string;
-const result = createSchema.safeParse(obj);
+const result = editSchema.safeParse(obj);
 if(!result.success){
     console.log(result.error.flatten());
     return{
-        message: "Attempt to create a book failed!",
+        message: "Attempt to edit a book failed!",
         error: result.error.message,
     };
 }
 
-let bookId:string;
 
     try {
-        const book =  await prisma.book.create({
+        const book =  await prisma.book.update({
+            where:{
+                id: bookId
+            },
             data:{
                 ...result.data,
                 image: result.data.image||null,
@@ -52,11 +58,11 @@ let bookId:string;
 //     bookId: book.id,
     
 // }
-bookId = book.id;
+
     } catch (error) {
     console.log(error);
     return {
-        message: "Failed to create a book!",
+        message: "Failed to edit a book!",
     };
 }
 redirect(`/books/${bookId}`);
