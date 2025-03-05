@@ -34,7 +34,7 @@ if(!result.success){
     };
 }
 
-
+let bookId:string;
 
     try {
         const book =  await prisma.book.create({
@@ -52,15 +52,13 @@ if(!result.success){
 //     bookId: book.id,
     
 // }
-redirect(`/books/${book.id}`, RedirectType.replace);
-
+bookId = book.id;
     } catch (error) {
     console.log(error);
     return {
         message: "Failed to create a product!",
     };
 }
-
-
+redirect(`/books/${bookId}`);
 }
 
