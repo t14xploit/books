@@ -2,7 +2,6 @@ import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import DeleteBookButton from "@/components/DeleteBookButton";
-import UpdateBookButton from "@/components/UpdateBookButton";
 import Link from "next/link";
 
 
@@ -42,7 +41,7 @@ const formattedDate = book.published.toLocaleDateString();
         <div className="flex space-x-4">
 
           {/* TODO fix the styling */}
-        <Link href={`/books/${book.id}/edit`} className="text-center px-3 py-2 rounded-lg"> ✏️ </Link>
+          <Link href={`/books/${book.id}/edit`} className="text-2xl cursor-pointer hover:bg-red-200 p-2 rounded-full transition duration-200"> ✏️ </Link>
           <DeleteBookButton bookId={book.id}/>
         </div>
       </div>
