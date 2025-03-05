@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import DeleteBookButton from "@/components/DeleteBookButton";
 import UpdateBookButton from "@/components/UpdateBookButton";
+import Link from "next/link";
 
 
 type Params = Promise<{
@@ -39,8 +40,9 @@ const formattedDate = book.published.toLocaleDateString();
       <div className="flex items-start justify-between mb-2"> {/* Changed 'items-center' to 'items-start' */}
         <h2 className="text-4xl font-bold text-white">{book.title}</h2>
         <div className="flex space-x-4">
-         <UpdateBookButton bookId={bookId} updatedData={{
-              }}/>
+
+          {/* TODO fix the styling */}
+        <Link href={`/books/${book.id}/edit`} className="text-center px-3 py-2 rounded-lg"> ✏️ </Link>
           <DeleteBookButton bookId={book.id}/>
         </div>
       </div>
