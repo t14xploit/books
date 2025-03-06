@@ -37,11 +37,11 @@ const formattedDate = book.published.toLocaleDateString();
     )}
     <div className="flex-1">
       <div className="flex items-start justify-between mb-2"> {/* Changed 'items-center' to 'items-start' */}
-        <h2 className="text-4xl font-bold text-white">{book.title}</h2>
+        <h2 className="text-4xl font-bold text-green-400">{book.title}</h2>
         <div className="flex space-x-4">
 
           {/* TODO fix the styling */}
-          <Link href={`/books/${book.id}/edit`} className="text-2xl cursor-pointer hover:bg-red-200 p-2 rounded-full transition duration-200"> ✏️ </Link>
+          <Link href={`/books/${book.id}/edit`} className="text-3xl cursor-pointer text-pink-400 hover:text-green-400 p-2 rounded-full transition duration-200 font-bold"> 🖍 </Link>
           <DeleteBookButton bookId={book.id}/>
         </div>
       </div>
